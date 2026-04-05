@@ -3,6 +3,7 @@ import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { runReport } from "../reports/run.js";
 import { formatError } from "../helpers/format-error.js";
+import { jsonOrNative } from "../helpers/client-coerce.js";
 
 const inputSchema = {
   report_id: z
@@ -10,8 +11,7 @@ const inputSchema = {
     .describe(
       "The report ID (e.g. 'profit_and_loss', 'balance_sheet', 'aged_receivables'). Call describe_report to discover valid IDs.",
     ),
-  params: z
-    .looseObject({})
+  params: jsonOrNative(z.record(z.string(), z.any()))
     .optional()
     .describe(
       "Query parameters for the report as a JSON object. Common params: date_macro (e.g. 'Last Month', 'This Fiscal Year-to-date'), start_date/end_date ('YYYY-MM-DD'), accounting_method ('Cash'|'Accrual'), summarize_column_by ('Month'|'Quarter'|'Year'|'Total'). Call describe_report(report_id) to see every supported parameter for a specific report.",

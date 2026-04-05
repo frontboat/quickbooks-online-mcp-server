@@ -3,6 +3,7 @@ import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { executeCreate } from "../../handlers/generic-handler.js";
 import { formatError } from "../../helpers/format-error.js";
+import { jsonOrNative } from "../../helpers/client-coerce.js";
 
 const inputSchema = {
   DisplayName: z
@@ -12,21 +13,20 @@ const inputSchema = {
   GivenName: z.string().optional().describe("Customer's first name."),
   FamilyName: z.string().optional().describe("Customer's last name."),
   CompanyName: z.string().optional().describe("Customer's company name."),
-  PrimaryEmailAddr: z
-    .object({ Address: z.email() })
+  PrimaryEmailAddr: jsonOrNative(z.object({ Address: z.email() }))
     .optional()
     .describe("Primary email. Format: { Address: 'email@example.com' }"),
-  PrimaryPhone: z
-    .object({ FreeFormNumber: z.string() })
+  PrimaryPhone: jsonOrNative(z.object({ FreeFormNumber: z.string() }))
     .optional()
     .describe("Primary phone. Format: { FreeFormNumber: '555-1234' }"),
-  BillAddr: z
-    .object({
+  BillAddr: jsonOrNative(
+    z.object({
       Line1: z.string().optional(),
       City: z.string().optional(),
       CountrySubDivisionCode: z.string().optional().describe("State/province code, e.g. 'CA'"),
       PostalCode: z.string().optional(),
-    })
+    }),
+  )
     .optional()
     .describe("Billing address."),
 };

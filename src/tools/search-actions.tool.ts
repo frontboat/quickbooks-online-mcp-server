@@ -2,6 +2,7 @@
 import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { searchCatalog } from "../catalog/action-catalog.js";
+import { jsonOrNative } from "../helpers/client-coerce.js";
 import { isReadOnly } from "../config.js";
 
 const inputSchema = {
@@ -10,11 +11,7 @@ const inputSchema = {
     .describe(
       "What you want to do, in plain English. Examples: 'create a customer', 'find invoices by date', 'delete a journal entry'.",
     ),
-  limit: z
-    .number()
-    .int()
-    .min(1)
-    .max(20)
+  limit: jsonOrNative(z.number().int().min(1).max(20))
     .default(10)
     .describe("Max results to return. Default 10."),
 };

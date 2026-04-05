@@ -3,10 +3,11 @@ import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { executeSearch } from "../../handlers/generic-handler.js";
 import { formatError } from "../../helpers/format-error.js";
+import { jsonOrNative } from "../../helpers/client-coerce.js";
 
 const inputSchema = {
-  criteria: z
-    .array(
+  criteria: jsonOrNative(
+    z.array(
       z.object({
         field: z
           .enum([
@@ -26,11 +27,12 @@ const inputSchema = {
           .default("=")
           .describe("Comparison operator."),
       }),
-    )
+    ),
+  )
     .optional()
     .describe("Filters to apply. Omit for full chart of accounts."),
-  limit: z.number().int().min(1).max(1000).default(100).describe("Max results."),
-  offset: z.number().int().min(0).default(0).describe("Skip N results."),
+  limit: jsonOrNative(z.number().int().min(1).max(1000)).default(100).describe("Max results."),
+  offset: jsonOrNative(z.number().int().min(0)).default(0).describe("Skip N results."),
 };
 
 /**

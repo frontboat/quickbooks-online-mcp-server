@@ -22,7 +22,7 @@ export async function runReport(
   const meta = REPORTS_BY_ID[reportId];
   if (!meta) {
     throw new Error(
-      `Unknown report_id "${reportId}". Call list_reports to see valid IDs.`,
+      `Unknown report_id "${reportId}". Call describe_report (no args) to see valid IDs.`,
     );
   }
 

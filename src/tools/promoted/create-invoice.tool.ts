@@ -3,6 +3,7 @@ import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { executeCreate } from "../../handlers/generic-handler.js";
 import { formatError } from "../../helpers/format-error.js";
+import { jsonOrNative } from "../../helpers/client-coerce.js";
 
 const lineItemSchema = z.object({
   Description: z.string().optional().describe("Line item description shown on the invoice."),
@@ -20,15 +21,12 @@ const lineItemSchema = z.object({
 });
 
 const inputSchema = {
-  CustomerRef: z
-    .object({ value: z.string() })
-    .describe(
-      "Reference to the customer. Get the ID from search_customers first.",
-    ),
-  Line: z
-    .array(lineItemSchema)
-    .min(1)
-    .describe("Invoice line items. At least one required."),
+  CustomerRef: jsonOrNative(z.object({ value: z.string() })).describe(
+    "Reference to the customer. Get the ID from search_customers first.",
+  ),
+  Line: jsonOrNative(z.array(lineItemSchema).min(1)).describe(
+    "Invoice line items. At least one required.",
+  ),
   DocNumber: z
     .string()
     .optional()

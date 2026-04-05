@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  * A single parameter definition for a report query.
  * Extracted from Intuit's CodesModelsJsonObjects_v2.json.
  */
-export interface ReportParamSchema {
+interface ReportParamSchema {
   type: string;
   required: boolean;
   default?: string;
@@ -18,7 +18,7 @@ export interface ReportParamSchema {
 }
 
 /** Full parameter schema for a single report. */
-export interface ReportSchema {
+interface ReportSchema {
   required: string[];
   optional: string[];
   properties: Record<string, ReportParamSchema>;
@@ -81,7 +81,7 @@ export function describeReport(reportId: string): {
  */
 export function validateReportParams(reportId: string, params: Record<string, unknown>): string[] {
   const meta = REPORTS_BY_ID[reportId];
-  if (!meta) return [`Unknown report_id "${reportId}". Use list_reports to see valid IDs.`];
+  if (!meta) return [`Unknown report_id "${reportId}". Call describe_report (no args) to see valid IDs.`];
 
   const schema = SCHEMAS[meta.schemaKey];
   if (!schema) return [`No schema found for report "${reportId}".`];

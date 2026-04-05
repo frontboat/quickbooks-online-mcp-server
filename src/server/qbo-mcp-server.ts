@@ -1,5 +1,13 @@
+import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { isReadOnly } from "../config.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const pkg = JSON.parse(
+  readFileSync(join(__dirname, "../../package.json"), "utf-8"),
+) as { version: string };
 
 /**
  * Singleton wrapper for the QuickBooks Online MCP Server.
@@ -35,7 +43,7 @@ export class QuickbooksMCPServer {
       QuickbooksMCPServer.instance = new McpServer(
         {
           name: "QuickBooks Online MCP Server",
-          version: "1.0.0",
+          version: pkg.version,
         },
         { instructions: lines.join("\n") },
       );

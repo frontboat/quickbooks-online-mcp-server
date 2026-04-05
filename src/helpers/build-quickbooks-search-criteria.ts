@@ -1,7 +1,7 @@
 /**
  * A single filter for QuickBooks search criteria.
  */
-export interface QuickbooksFilter {
+interface QuickbooksFilter {
   /** Field/column name to filter on */
   field: string;
   /** Value to match against */
@@ -13,7 +13,7 @@ export interface QuickbooksFilter {
 /**
  * Advanced search options for QuickBooks queries with filtering, sorting, and pagination.
  */
-export interface AdvancedQuickbooksSearchOptions {
+interface AdvancedQuickbooksSearchOptions {
   /** Array of filter objects that map to QuickBooks query filters */
   filters?: QuickbooksFilter[];
   /** Sort ascending by the provided field */
@@ -37,9 +37,10 @@ export interface AdvancedQuickbooksSearchOptions {
  * User-supplied criteria can be one of:
  *  1. A simple criteria object (e.g. { Name: 'Foo' })
  *  2. An array of objects specifying field/value/operator
- *  3. An {@link AdvancedQuickbooksSearchOptions} object that is translated to the array format expected by node-quickbooks
+ *  3. An advanced-options object with filters/asc/desc/limit/offset/count/fetchAll
+ *     that is translated to the array format expected by node-quickbooks
  */
-export type QuickbooksSearchCriteriaInput =
+type QuickbooksSearchCriteriaInput =
   | Record<string, any>
   | Array<Record<string, any>>
   | AdvancedQuickbooksSearchOptions;

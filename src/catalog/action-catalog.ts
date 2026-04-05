@@ -3,6 +3,20 @@ import { ActionEntry } from "./types.js";
 import { isWriteOperation } from "../config.js";
 
 /**
+ * Action IDs that are also exposed as dedicated top-level MCP tools.
+ * These are filtered out of `searchCatalog` results so Claude is steered
+ * to the promoted tools (which have typed schemas and richer descriptions)
+ * rather than the slower `execute_action` path to the same operation.
+ */
+const PROMOTED_ACTION_IDS = new Set<string>([
+  "search_customers",
+  "search_invoices",
+  "search_accounts",
+  "create_customer",
+  "create_invoice",
+]);
+
+/**
  * Complete catalog of available QuickBooks actions.
  * Includes CRUD operations for 10 entity types plus 29 financial reports.
  */
@@ -482,7 +496,14 @@ export const ACTION_CATALOG: ActionEntry[] = [
 
 /**
  * Searches the action catalog by intent string using keyword matching.
- * Filters out write operations if in read-only mode.
+ *
+ * Write operations are excluded when `readOnly` is true. Promoted actions
+ * (those with dedicated top-level MCP tools) remain searchable but are
+ * returned as synthetic "redirect" entries whose description tells Claude
+ * to call the dedicated tool directly instead of routing through
+ * `execute_action` — this keeps the slow path off the table while still
+ * surfacing the right entry when the query matches a promoted action.
+ *
  * @param intent - Plain English description of the desired action (e.g., "create a customer").
  * @param limit - Maximum number of results to return (default: 10).
  * @param readOnly - If true, excludes write operations (create, update, delete).
@@ -502,5 +523,15 @@ export function searchCatalog(intent: string, limit = 10, readOnly = false): Act
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
-    .map((s) => s.action);
+    .map(({ action }) =>
+      PROMOTED_ACTION_IDS.has(action.id)
+        ? {
+            id: action.id,
+            entity: action.entity,
+            operation: action.operation,
+            description: `USE THE DEDICATED TOP-LEVEL TOOL "${action.id}" DIRECTLY — it is a first-class MCP tool with a typed schema. Do NOT route this through execute_action.`,
+            parameterHints: {},
+          }
+        : action,
+    );
 }

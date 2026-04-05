@@ -95,7 +95,7 @@ export async function executeDelete(entity: string, idOrEntity: any): Promise<an
 /**
  * Searches for records in QuickBooks matching the given criteria.
  * @param entity The entity type (e.g. 'customer', 'invoice')
- * @param criteria Search criteria (simple object, array, or AdvancedQuickbooksSearchOptions)
+ * @param criteria Search criteria — simple object, array of filter objects, or an advanced-options object (filters/asc/desc/limit/offset/count/fetchAll)
  * @returns Array of records matching the criteria
  * @throws Error if the entity type does not support search
  */
