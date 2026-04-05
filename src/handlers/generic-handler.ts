@@ -93,17 +93,6 @@ export async function executeDelete(entity: string, idOrEntity: any): Promise<an
 }
 
 /**
- * Executes a QuickBooks financial report.
- * @param methodName The report method name (e.g. 'getProfitAndLossReport')
- * @param options Report options, typically containing start_date and end_date
- * @returns The report data
- */
-export async function executeReport(methodName: string, options: any): Promise<any> {
-  await quickbooksClient.authenticate();
-  return callQB(methodName, options ?? {});
-}
-
-/**
  * Searches for records in QuickBooks matching the given criteria.
  * @param entity The entity type (e.g. 'customer', 'invoice')
  * @param criteria Search criteria (simple object, array, or AdvancedQuickbooksSearchOptions)

@@ -10,7 +10,7 @@
       "dist"
     ],
     "scripts": {
-      "build": "tsc && shx chmod +x dist/*.js",
+      "build": "tsc && shx cp src/reports/report-schemas.json dist/reports/report-schemas.json && shx chmod +x dist/*.js",
       "prepare": "bun run build",
       "watch": "tsc --watch",
       "lint:fix": "eslint --fix",

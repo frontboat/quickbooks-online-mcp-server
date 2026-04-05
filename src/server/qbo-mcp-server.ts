@@ -23,7 +23,7 @@ export class QuickbooksMCPServer {
         "QuickBooks IDs are opaque strings — never guess them. Always search first to get valid IDs before calling get/update/delete operations.",
         "Updates require the entity's current SyncToken for optimistic locking. Fetch the entity first with a get operation to obtain the SyncToken, then include it in the update payload.",
         "Deleting a Customer or Vendor sets Active=false (soft delete). Other entity deletes are hard deletes.",
-        "29 financial reports are available via search_actions (search 'report'): P&L, Balance Sheet, Cash Flow, Aged Receivables/Payables, Customer/Vendor/Item Sales, General Ledger, Trial Balance, and more. Pass date ranges via options: { start_date, end_date }.",
+        "For financial reports, use the dedicated describe_report and run_report tools — NOT execute_action. Call describe_report (no args) to see all 29 reports. Call describe_report(report_id) to see every supported parameter for a specific report, including the full list of date_macro values. Call run_report(report_id, params, view) to execute. The view parameter controls response size: 'summary' (default) returns only top-level section totals like Income/Expenses/NetIncome — ideal for single-number questions. 'flat' adds every data row with its section path — ideal for breakdowns and comparisons. 'full' includes the raw QB tree. For period comparisons (this month vs last month, YoY, etc.) call run_report twice with different date_macro or date range params and diff the summary objects.",
       ];
 
       if (isReadOnly) {

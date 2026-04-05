@@ -24,6 +24,10 @@ import { registerCreateInvoice } from "./tools/promoted/create-invoice.tool.js";
 import { registerSearchInvoices } from "./tools/promoted/search-invoices.tool.js";
 import { registerSearchAccounts } from "./tools/promoted/search-accounts.tool.js";
 
+// Report tools (dynamic report query engine)
+import { registerDescribeReport } from "./tools/describe-report.tool.js";
+import { registerRunReport } from "./tools/run-report.tool.js";
+
 const main = async () => {
   const server = QuickbooksMCPServer.GetServer();
 
@@ -35,6 +39,10 @@ const main = async () => {
   registerSearchCustomers(server);
   registerSearchInvoices(server);
   registerSearchAccounts(server);
+
+  // Report tools — dynamic query engine with full parameter discovery
+  registerDescribeReport(server);
+  registerRunReport(server);
 
   // Write tools only registered when not in read-only mode
   if (!isReadOnly) {

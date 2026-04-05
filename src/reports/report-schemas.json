@@ -1,0 +1,2810 @@
+{
+  "cashflowquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "vendor",
+      "end_date",
+      "date_macro",
+      "class",
+      "item",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors.Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file.Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all items",
+        "description": "Filters report contents to include information for specified items.Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results.Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "transactionlistwithsplitsquery": {
+    "required": [],
+    "optional": [
+      "docnum",
+      "name",
+      "end_date",
+      "date_macro",
+      "payment_method",
+      "source_account_type",
+      "transaction_type",
+      "group_by",
+      "sort_by",
+      "sort_order",
+      "start_date",
+      "columns"
+    ],
+    "properties": {
+      "docnum": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all docnums.",
+        "description": "Filters report contents to include information for specified transaction number, as found in the docnum parameter of the transaction object."
+      },
+      "name": {
+        "type": "String",
+        "required": false,
+        "default": "Include data from all customer, vendor, and employee objects",
+        "description": "Filters report contents based on the specified comma separated list of ids for the name list customer, vendor, or employee objects.Query the Customer, Vendor, or Employee name list resource to determine the list of objects for this reference. Specify values found in Customer.Id, Vendor.Id, and Employee.Id. For example, name=1,4,7 includes data in the report for namelist ids 1, 4, and 7. vendor and employee objects"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Quarter",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "payment_method": {
+        "type": "String",
+        "required": false,
+        "default": "Include all payment methods",
+        "description": "Filters report contents based on payment method.Supported Values: Cash, Check, Dinners Club, American Express, Discover, MasterCard, Visa"
+      },
+      "source_account_type": {
+        "type": "String",
+        "required": false,
+        "default": "All account types",
+        "description": "Account type from which transactions are included in the report.Supported Values: AccountsPayable, AccountsReceivable, Bank, CostOfGoodsSold, CreditCard, Equity, Expense, FixedAsset, Income, LongTermLiability, NonPosting, OtherAsset, OtherCurrentAsset, OtherCurrentLiability, OtherExpense, OtherIncome"
+      },
+      "transaction_type": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all transactions",
+        "description": "Filters report contents based transaction type. Supported values include:CreditCardCharge, Check, Invoice, ReceivePayment, JournalEntry, Bill, CreditCardCredit, VendorCredit, Credit, BillPaymentCheck, BillPaymentCreditCard, Charge, Transfer, Deposit, Statement, BillableCharge, TimeActivity, CashPurchase, SalesReceipt, CreditMemo, CreditRefund, Estimate, InventoryQuantityAdjustment, PurchaseOrder, GlobalTaxPayment, GlobalTaxAdjustment, Service Tax Refund, Service Tax Gross Adjustment, Service Tax Reversal, Service Tax Defer, Service Tax Partial Utilisation"
+      },
+      "group_by": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The field in the transaction by which to group results. Supported Values: Name, Account, Transaction Type"
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter.Supported Values: account_name, is_adj, create_by, create_date, tx_date, last_mod_date, last_mod_by, name, doc_num, pmt_mthd, is_no_post , txn_type"
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: tx_date, txn_type, doc_num, is_no_post, account_name, memo, account_name, amount, is_adj, create_by, create_date, last_mod_date, last_mod_by, cust_name, vend_name, rate, quantity, item_name, emp_name, pmt_mthd, nat_open_bal, tax_type, is_billable, debt_amt, credit_amt, is_cleared, olb_status Additional columns when location tracking enabled: dept_name* Additional columns with location tracking enabled: dept_name* Multicurrency is enabled for the company if Preferences.MultiCurrencyEnabled is set to true. Read more about multicurrency support here."
+      }
+    }
+  },
+  "trialbalancequery": {
+    "required": [],
+    "optional": [
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "sort_order",
+      "summarize_column_by",
+      "start_date"
+    ],
+    "properties": {
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute.",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "customerbalancedetailquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "shipvia",
+      "term",
+      "end_duedate",
+      "start_duedate",
+      "custom1",
+      "sort_by",
+      "arpaid",
+      "report_date",
+      "sort_order",
+      "aging_method",
+      "department",
+      "columns"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "shipvia": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all shipping methods",
+        "description": "Filter by the shipping method as stored in Invoice.ShipMethodRef.Name.Supported Values: Any shipping method as sent in the Invoice.ShipMethodRef.Name attribute at Invoice create- or update-time."
+      },
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all terms",
+        "description": "Filters report contents based on term or terms supplied.Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "custom1": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all fields",
+        "description": "Filter by the specified custom field as defined by the CustomField attribute in transaction entities where supported.Supported Values: Name of custom field."
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "arpaid": {
+        "type": "String",
+        "required": false,
+        "default": "UnpaidUnpaid",
+        "description": "Supported Values:All, Paid, Unpaid"
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascendUnpaid",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "aging_method": {
+        "type": "String",
+        "required": false,
+        "default": "Report_DateUnpaid",
+        "description": "The date upon which aging is determined.Supported Values:Report_Date, Current"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: bill_addr, create_by, create_date, cust_bill_email, cust_comp_name, cust_msg, cust_phone_other, cust_tel, cust_name, deliv_addr, doc_num*, due_date*, last_mod_by, last_mod_date, memo*, sale_sent_state, ship_addr, ship_date, ship_via, term_name, tracking_num, tx_date*, txn_type* Additional columns with custom fields enabled: sales_cust1, sales_cust2, sales_cust3 Additional columns with location tracking enabled: dept_name*"
+      }
+    }
+  },
+  "transactionlistquery": {
+    "required": [],
+    "optional": [
+      "date_macro",
+      "payment_method",
+      "duedate_macro",
+      "arpaid",
+      "bothamount",
+      "transaction_type",
+      "docnum",
+      "start_moddate",
+      "source_account_type",
+      "group_by",
+      "start_date",
+      "department",
+      "start_duedate",
+      "columns",
+      "end_duedate",
+      "vendor",
+      "end_date",
+      "memo",
+      "appaid",
+      "moddate_macro",
+      "printed",
+      "createdate_macro",
+      "cleared",
+      "customer",
+      "qzurl",
+      "term",
+      "end_createdate",
+      "name",
+      "sort_by",
+      "sort_order",
+      "start_createdate",
+      "end_moddate"
+    ],
+    "properties": {
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year, This Calendar Quarter, This Calendar Quarter-to-date, Last Calendar Quarter, Last Calendar Quarter-to-date, Next Calendar Quarter, This Calendar Year, This Calendar Year-to-date, Last Calendar Year, Last Calendar Year-to-date, Next Calendar Year"
+      },
+      "payment_method": {
+        "type": "String",
+        "required": false,
+        "default": "Include all payment methods",
+        "description": "Filters report contents based on payment method.Supported Values: Cash, Check, Dinners Club, American Express, Discover, MasterCard, Visa, Credit Card"
+      },
+      "duedate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined date range of due dates for balances to include in the report; otherwise, use the start_duedate and end_duedate to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "arpaid": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Supported Values:All, Paid, Unpaid"
+      },
+      "bothamount": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all amounts",
+        "description": "Filters report contents to include information for specified transaction amount. For example, bothamount=1233.45 limits report contents to transactions of amount 1233.45."
+      },
+      "transaction_type": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all transactions",
+        "description": "Filters report contents based transaction type. Supported values include:CreditCardCharge, Check, Invoice, ReceivePayment, JournalEntry, Bill, CreditCardCredit, VendorCredit, Credit, BillPaymentCheck, BillPaymentCreditCard, Charge, Transfer, Deposit, Statement, BillableCharge, TimeActivity, CashPurchase, SalesReceipt, CreditMemo, CreditRefund, Estimate, InventoryQuantityAdjustment, PurchaseOrder, GlobalTaxPayment, GlobalTaxAdjustment, Service Tax Refund, Service Tax Gross Adjustment, Service Tax Reversal, Service Tax Defer, Service Tax Partial Utilisation"
+      },
+      "docnum": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all docnums.",
+        "description": "Filters report contents to include information for specified transaction number, as found in the docnum parameter of the transaction object."
+      },
+      "start_moddate": {
+        "type": "String",
+        "required": false,
+        "default": "moddate_macro",
+        "description": "(Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      },
+      "source_account_type": {
+        "type": "String",
+        "required": false,
+        "default": "All account types",
+        "description": "Account type from which transactions are included in the report.Supported Values: AccountsPayable, AccountsReceivable, Bank, CostOfGoodsSold, CreditCard, Equity, Expense, FixedAsset, Income, LongTermLiability, NonPosting, OtherAsset, OtherCurrentAsset, OtherCurrentLiability, OtherExpense, OtherIncome"
+      },
+      "group_by": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The field in the transaction by which to group results. Supported Values: Name, Account, Transaction Type, Customer, Vendor, Employee, Location, Payment Method, Day, Week, Month, Quarter, Year, Fiscal Year, Fiscal Quarter, None"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "Return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: account_name*, create_by, create_date, cust_msg, due_date, doc_num*, inv_date, is_ap_paid, is_cleared, is_no_post*, last_mod_by, memo*, name*, other_account*, pmt_mthd, printed, sales_cust1, sales_cust2, sales_cust3, term_name, tracking_num, tx_date*, txn_type*, term_name, is_adj, last_mod_date, ship_via, olb_status, extra_doc_num, is_ar_paid Additional columns when location tracking enabled: dept_name* Additional columns with location tracking enabled: dept_name* Multicurrency is enabled for the company if Preferences.MultiCurrencyEnabled is set to true. Read more about multicurrency support here."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "Return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors.Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "memo": {
+        "type": "String",
+        "required": false,
+        "default": "Include all memos",
+        "description": "Filters report contents to include information for specified memo.Supported Values: One or more comma separated memo IDs."
+      },
+      "appaid": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Status of the balance.Supported Values: Paid, Unpaid, All"
+      },
+      "moddate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined report account modification date range. Use if you want the report to cover a standard report date range when accounts were modified; otherwise, use the start_moddate and end_moddate to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "printed": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Filters report contents based on whether checks are printed or not.Supported Values: Printed, To_be_printed"
+      },
+      "createdate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined report account create date range. Use if you want the report to cover a standard create report date range; otherwise, use start_createdate and end_createdate to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "cleared": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all check statuses",
+        "description": "Filters report contents to include information for specified check status.Supported Values: Cleared: The transaction has been processed by a bank or credit card account and is reflected in the bank balance.Uncleared: A financial entry that has not been reconciled or matched with the corresponding bank statement records.Reconciled: The transaction has been compared to original records and verified as correct.Deposited: A deposit was made into a bank account, such as a checking account."
+      },
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data.Supported Values: true, false"
+      },
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all terms",
+        "description": "Filters report contents based on term or terms supplied.Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "end_createdate": {
+        "type": "String",
+        "required": false,
+        "default": "createdate_macro",
+        "description": "Specify an explicit account create report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use createdate_macro to cover a standard report date range. (This field is not currently available.)"
+      },
+      "name": {
+        "type": "String",
+        "required": false,
+        "default": "Include data from all customer, vendor, and employee objects",
+        "description": "Filters report contents based on the specified comma separated list of ids for the name list customer, vendor, or employee objects.Query the Customer, Vendor, or Employee name list resource to determine the list of objects for this reference. Specify values found in Customer.Id, Vendor.Id, and Employee.Id. For example, name=1,4,7 includes data in the report for namelist ids 1, 4, and 7. vendor and employee objects"
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "start_createdate": {
+        "type": "String",
+        "required": false,
+        "default": "createdate_macro",
+        "description": "Specify an explicit account create report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use createdate_macro to cover a standard report date range. (This field is not currently available.)"
+      },
+      "end_moddate": {
+        "type": "String",
+        "required": false,
+        "default": "moddate_macro",
+        "description": "(Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      }
+    }
+  },
+  "vendorbalancequery": {
+    "required": [],
+    "optional": [
+      "qzurl",
+      "accounting_method",
+      "date_macro",
+      "appaid",
+      "report_date",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "vendor"
+    ],
+    "properties": {
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "default is false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data. Supported Values: true, false"
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "appaid": {
+        "type": "String",
+        "required": false,
+        "default": "Unpaid",
+        "description": "Status of the balance. Supported Values: Paid, Unpaid, All"
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "Today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors. Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      }
+    }
+  },
+  "inventoryvaluationdetailquery": {
+    "required": [],
+    "optional": [
+      "end_date",
+      "end_svcdate",
+      "date_macro",
+      "svcdate_macro",
+      "start_svcdate",
+      "group_by",
+      "start_date",
+      "columns"
+    ],
+    "properties": {
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used."
+      },
+      "end_svcdate": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used."
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "this month to date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "svcdate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "start_svcdate": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used."
+      },
+      "group_by": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The field in the transaction by which to group results. Supported Values: Name, Account, Transaction Type, Customer, Vendor, Employee, Location, Payment Method, Day, Week, Month, Quarter, Year, None"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "first date of the month",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "Column types to show in the report. Supported Values: tx_date, txn_id, txn_type, doc_num, name, quantity, rate, home_amount, qty_on_hand, asset_value, create_date, create_by, last_mod_date, last_mod_by, item_sku, memo, exch_rate, account_name, service_date, rate_inventory, qty_on_hand, asset_value_nt, tracking_num"
+      }
+    }
+  },
+  "departmentsalesquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "class",
+      "item",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers. Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file. Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all items",
+        "description": "Filters report contents to include information for specified items. Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "vendorexpensesquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "vendor",
+      "end_date",
+      "date_macro",
+      "class",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "accounting_method",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "To include data for all customers",
+        "description": "Filters report contents to include information for specified customers. Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "To return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors. Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "To include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file. Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "To include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "agedpayablesquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "qzurl",
+      "vendor",
+      "date_macro",
+      "department",
+      "report_date",
+      "sort_order",
+      "aging_method"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data.Supported Values: true, false"
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "to return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors.Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "aging_method": {
+        "type": "String",
+        "required": false,
+        "default": "Report_Date",
+        "description": "The date upon which aging is determined.Supported Values:Report_Date, Current"
+      }
+    }
+  },
+  "agedreceivablesquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "qzurl",
+      "date_macro",
+      "aging_method",
+      "report_date",
+      "sort_order",
+      "department"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all customers",
+        "description": "Filters report contents to include information for specified customers. Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data. Supported Values: true, false"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "aging_method": {
+        "type": "String",
+        "required": false,
+        "default": "Report_Date",
+        "description": "The date upon which aging is determined. Supported Values:Report_Date, Current"
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      }
+    }
+  },
+  "inventoryvaluationquery": {
+    "required": [],
+    "optional": [
+      "qzurl",
+      "date_macro",
+      "item",
+      "report_date",
+      "sort_order",
+      "summarize_column_by"
+    ],
+    "properties": {
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "False",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data.Supported Values: true, false"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all items",
+        "description": "Filters report contents to include information for specified items.Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results.Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      }
+    }
+  },
+  "generalledgerquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "account",
+      "accounting_method",
+      "source_account",
+      "end_date",
+      "date_macro",
+      "account_type",
+      "sort_by",
+      "sort_order",
+      "start_date",
+      "summarize_column_by",
+      "department",
+      "vendor",
+      "class",
+      "columns"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "account": {
+        "type": "String",
+        "required": false,
+        "default": "Data for all accounts",
+        "description": "Filters report contents to include information for specified accounts.Supported Values: One or more comma separated account IDs as returned in the attribute, Account.Id, of the Account object response code."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "source_account": {
+        "type": "String",
+        "required": false,
+        "default": "Data for all accounts",
+        "description": "Filters report contents to include information for specified source accounts.Supported Values: One or more comma separated account IDs as returned in the attribute, Account.Id, of the Account object response code."
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "account_type": {
+        "type": "String",
+        "required": false,
+        "default": "All accounts",
+        "description": "(source_account_type) Account type from which transactions are included in the report.Supported Values: AccountsPayable, AccountsReceivable, Bank, CostOfGoodsSold, CreditCard, Equity, Expense, FixedAsset, Income, LongTermLiability, NonPosting, OtherAsset, OtherCurrentAsset, OtherCurrentLiability, OtherExpense, OtherIncome"
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results.Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "To return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors.Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file. Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "Columns included in the report are denoted with *",
+        "description": "Column types to be shown in the report. Supported Values: account_name, chk_print_state, create_by, create_date, cust_name, doc_num*, emp_name, inv_date, is_adj*, is_ap_paid, is_ar_paid, is_cleared, item_name, last_mod_by, last_mod_date, memo*, name*, quantity, rate, split_acc*, tx_date*, txn_type*, vend_name.Additional columns when sales tax enabled: net_amount, tax_amount, tax_code. Additional columns when sales tax enabled: net_amount, tax_amount, tax_code Additional columns when account numbering enabled: account_num.Additional columns when class tracking enabled: klass_name*.Additional columns when location tracking enabled: dept_name*. Multicurrency is enabled for the company if Preferences.MultiCurrencyEnabled is set to true. Read more about multicurrency support here. NonTracking status is enabled for the company if CompanyInfo.NameValue.Name.NonTracking is set to true. Currently enabled for Canadian company, other locales can be added in the future."
+      }
+    }
+  },
+  "balancesheetquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "qzurl",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "adjusted_gain_loss",
+      "class",
+      "item",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "vendor",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all customers",
+        "description": "Filters report contents to include information for specified customers. Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data. Supported Values: true, false"
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Preferences.ReportPrefs.ReportBasis",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "adjusted_gain_loss": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether unrealized gain and losses are included in the report. Supported Values: true, false"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file. Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all items",
+        "description": "Filters report contents to include information for specified items. Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "to return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors. Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "agedreceivabledetailquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "shipvia",
+      "term",
+      "end_duedate",
+      "start_duedate",
+      "custom1",
+      "custom2",
+      "custom3",
+      "report_date",
+      "num_periods",
+      "aging_method",
+      "past_due",
+      "aging_period",
+      "columns"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "shipvia": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all shipping methods",
+        "description": "Filter by the shipping method as stored in Invoice.ShipMethodRef.Name.Supported Values: Any shipping method as sent in the Invoice.ShipMethodRef.Name attribute at Invoice create- or update-time."
+      },
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "to return data for all terms",
+        "description": "Filters report contents based on term or terms supplied.Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "custom1": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all fields",
+        "description": "Filter by the specified custom field as defined by the CustomField attribute in transaction entities where supported. Supported Values: Name of custom field."
+      },
+      "custom2": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all fields",
+        "description": "Filter by the specified custom field as defined by the CustomField attribute in transaction entities where supported. Supported Values: Name of custom field."
+      },
+      "custom3": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all fields",
+        "description": "Filter by the specified custom field as defined by the CustomField attribute in transaction entities where supported. Supported Values: Name of custom field."
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "num_periods": {
+        "type": "Integer",
+        "required": false,
+        "default": "4",
+        "description": "The number of periods to be shown in the report.Supported Values: A numeric value."
+      },
+      "aging_method": {
+        "type": "String",
+        "required": false,
+        "default": "Report_Date",
+        "description": "The date upon which aging is determined.Supported Values:Report_Date, Current"
+      },
+      "past_due": {
+        "type": "Integer",
+        "required": false,
+        "default": null,
+        "description": "Filters report contents based on minimum days past due.Supported Values: Integer number of days. No filtering."
+      },
+      "aging_period": {
+        "type": "Decimal",
+        "required": false,
+        "default": "30",
+        "description": "The number of days in the aging period.Supported Values: A numeric value."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: bill_addr, create_by, create_date, cust_bill_email, cust_comp_name, cust_msg, cust_msg, cust_msg, cust_name, deliv_addr, doc_num*, due_date*, last_mod_by, last_mod_date, memo*, past_due, sale_sent_state, ship_addr, term_name, tx_date*, txn_type* Additional columns with custom fields enabled: sales_cust1, sales_cust2, sales_cust3 Additional columns with location tracking enabled: dept_name*"
+      }
+    }
+  },
+  "transactionlistbyvendorquery": {
+    "required": [],
+    "optional": [
+      "date_macro",
+      "payment_method",
+      "duedate_macro",
+      "arpaid",
+      "bothamount",
+      "transaction_type",
+      "docnum",
+      "start_moddate",
+      "source_account_type",
+      "group_by",
+      "start_date",
+      "department",
+      "start_duedate",
+      "columns",
+      "end_duedate",
+      "vendor",
+      "end_date",
+      "memo",
+      "appaid",
+      "moddate_macro",
+      "printed",
+      "createdate_macro",
+      "cleared",
+      "qzurl",
+      "term",
+      "end_createdate",
+      "name",
+      "sort_by",
+      "sort_order",
+      "start_createdate",
+      "end_moddate"
+    ],
+    "properties": {
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year, This Calendar Quarter, This Calendar Quarter-to-date, Last Calendar Quarter, Last Calendar Quarter-to-date, Next Calendar Quarter, This Calendar Year, This Calendar Year-to-date, Last Calendar Year, Last Calendar Year-to-date, Next Calendar Year"
+      },
+      "payment_method": {
+        "type": "String",
+        "required": false,
+        "default": "Include all payment methods",
+        "description": "Filters report contents based on payment method.Supported Values: Cash, Check, Dinners Club, American Express, Discover, MasterCard, Visa, Credit Card"
+      },
+      "duedate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined date range of due dates for balances to include in the report; otherwise, use the start_duedate and end_duedate to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "arpaid": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Supported Values:All, Paid, Unpaid"
+      },
+      "bothamount": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all amounts",
+        "description": "Filters report contents to include information for specified transaction amount. For example, bothamount=1233.45 limits report contents to transactions of amount 1233.45."
+      },
+      "transaction_type": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all transactions",
+        "description": "Filters report contents based transaction type. Supported values include:CreditCardCharge, Check, Invoice, ReceivePayment, JournalEntry, Bill, CreditCardCredit, VendorCredit, Credit, BillPaymentCheck, BillPaymentCreditCard, Charge, Transfer, Deposit, Statement, BillableCharge, TimeActivity, CashPurchase, SalesReceipt, CreditMemo, CreditRefund, Estimate, InventoryQuantityAdjustment, PurchaseOrder, GlobalTaxPayment, GlobalTaxAdjustment, Service Tax Refund, Service Tax Gross Adjustment, Service Tax Reversal, Service Tax Defer, Service Tax Partial Utilisation"
+      },
+      "docnum": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all docnums.",
+        "description": "Filters report contents to include information for specified transaction number, as found in the docnum parameter of the transaction object."
+      },
+      "start_moddate": {
+        "type": "String",
+        "required": false,
+        "default": "moddate_macro",
+        "description": "(Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      },
+      "source_account_type": {
+        "type": "String",
+        "required": false,
+        "default": "All account types",
+        "description": "Account type from which transactions are included in the report.Supported Values: AccountsPayable, AccountsReceivable, Bank, CostOfGoodsSold, CreditCard, Equity, Expense, FixedAsset, Income, LongTermLiability, NonPosting, OtherAsset, OtherCurrentAsset, OtherCurrentLiability, OtherExpense, OtherIncome"
+      },
+      "group_by": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The field in the transaction by which to group results. Supported Values: Name, Account, Transaction Type, Customer, Vendor, Employee, Location, Payment Method, Day, Week, Month, Quarter, Year, Fiscal Year, Fiscal Quarter, None"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "Return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: account_name*, create_by, create_date, cust_msg, due_date, doc_num*, inv_date, is_ap_paid, is_cleared, is_no_post*, last_mod_by, memo*, name*, other_account*, pmt_mthd, printed, sales_cust1, sales_cust2, sales_cust3, term_name, tracking_num, tx_date*, txn_type*, term_name, last_mod_date, po_status, ship_via, olb_status, vendor_name Additional columns when location tracking enabled: dept_name* Additional columns with location tracking enabled: dept_name* Multicurrency is enabled for the company if Preferences.MultiCurrencyEnabled is set to true. Read more about multicurrency support here."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "Return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors.Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "memo": {
+        "type": "String",
+        "required": false,
+        "default": "Include all memos",
+        "description": "Filters report contents to include information for specified memo.Supported Values: One or more comma separated memo IDs."
+      },
+      "appaid": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Status of the balance.Supported Values: Paid, Unpaid, All"
+      },
+      "moddate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined report account modification date range. Use if you want the report to cover a standard report date range when accounts were modified; otherwise, use the start_moddate and end_moddate to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "printed": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Filters report contents based on whether checks are printed or not.Supported Values: Printed, To_be_printed"
+      },
+      "createdate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined report account create date range. Use if you want the report to cover a standard create report date range; otherwise, use start_createdate and end_createdate to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "cleared": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all check statuses",
+        "description": "Filters report contents to include information for specified check status.Supported Values: Cleared: The transaction has been processed by a bank or credit card account and is reflected in the bank balance.Uncleared: A financial entry that has not been reconciled or matched with the corresponding bank statement records.Reconciled: The transaction has been compared to original records and verified as correct.Deposited: A deposit was made into a bank account, such as a checking account."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data.Supported Values: true, false"
+      },
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all terms",
+        "description": "Filters report contents based on term or terms supplied.Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "end_createdate": {
+        "type": "String",
+        "required": false,
+        "default": "createdate_macro",
+        "description": "Specify an explicit account create report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use createdate_macro to cover a standard report date range. (This field is not currently available.)"
+      },
+      "name": {
+        "type": "String",
+        "required": false,
+        "default": "Include data from all customer, vendor, and employee objects",
+        "description": "Filters report contents based on the specified comma separated list of ids for the name list customer, vendor, or employee objects.Query the Customer, Vendor, or Employee name list resource to determine the list of objects for this reference. Specify values found in Customer.Id, Vendor.Id, and Employee.Id. For example, name=1,4,7 includes data in the report for namelist ids 1, 4, and 7. vendor and employee objects"
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "start_createdate": {
+        "type": "String",
+        "required": false,
+        "default": "createdate_macro",
+        "description": "Specify an explicit account create report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use createdate_macro to cover a standard report date range. (This field is not currently available.)"
+      },
+      "end_moddate": {
+        "type": "String",
+        "required": false,
+        "default": "moddate_macro",
+        "description": "(Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      }
+    }
+  },
+  "customerbalancequery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "accounting_method",
+      "date_macro",
+      "arpaid",
+      "report_date",
+      "sort_order",
+      "summarize_column_by",
+      "department"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "arpaid": {
+        "type": "String",
+        "required": false,
+        "default": "Unpaid",
+        "description": "Supported Values:All, Paid, Unpaid"
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results.Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      }
+    }
+  },
+  "accountlistquery": {
+    "required": [],
+    "optional": [
+      "account_type",
+      "end_date",
+      "start_moddate",
+      "sort_by",
+      "sort_order",
+      "moddate_macro",
+      "end_moddate",
+      "account_status",
+      "createdate_macro",
+      "start_date",
+      "columns"
+    ],
+    "properties": {
+      "account_type": {
+        "type": "String",
+        "required": false,
+        "default": "All account types",
+        "description": "Account type from which transactions are included in the report.Supported Values: AccountsPayable, AccountsReceivable, Bank, CostOfGoodsSold, CreditCard, Equity, Expense, FixedAsset, Income, LongTermLiability, NonPosting, OtherAsset, OtherCurrentAsset, OtherCurrentLiability, OtherExpense, OtherIncome"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date and end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range."
+      },
+      "start_moddate": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "If not specified value of moddate_macro is used. (Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "moddate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined report account modification date range. Use if you want the report to cover a standard report date range when accounts were modified; otherwise, use the start_moddate and end_moddate to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "end_moddate": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "If not specified value of moddate_macro is used. (Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      },
+      "account_status": {
+        "type": "String",
+        "required": false,
+        "default": "Not_Deleted",
+        "description": "The account status. Supported values include: Deleted, Not_Deleted"
+      },
+      "createdate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined report account create date range. Use if you want the report to cover a standard create report date range; otherwise, use start_createdate and end_createdate to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date and end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "Column types to be shown in the report.Supported Values:account_name*, account_type*, detail_acc_type, create_date, create_by, detail_acc_type*, last_ mod_date, last_ mod_by, account_desc*, account_bal*"
+      }
+    }
+  },
+  "profitandlossquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "qzurl",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "adjusted_gain_loss",
+      "class",
+      "item",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "vendor",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers. Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data. Supported Values: true, false"
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "adjusted_gain_loss": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether unrealized gain and losses are included in the report. Supported Values: true, false"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file. Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all items",
+        "description": "Filters report contents to include information for specified items. Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors. Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "profitandlossdetailquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "account",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "adjusted_gain_loss",
+      "class",
+      "sort_by",
+      "payment_method",
+      "sort_order",
+      "employee",
+      "department",
+      "vendor",
+      "account_type",
+      "start_date",
+      "columns"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "account": {
+        "type": "String",
+        "required": false,
+        "default": "Data for all account types",
+        "description": "(source_account_type) Filters report contents to include information for specified accounts. Supported Values: One or more comma separated account IDs as returned in the attribute, Account.Id, of the Account object response code."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in prefrences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "adjusted_gain_loss": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether unrealized gain and losses are included in the report.Supported Values: true, false"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file.Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "payment_method": {
+        "type": "String",
+        "required": false,
+        "default": "Default includes information for all payment methods",
+        "description": "Filters report contents based on payment method.Supported Values: Cash, Check, Dinners Club, American Express, Discover, MasterCard, Visa"
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "employee": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all employees",
+        "description": "Filters report contents to include information for specified employees.Supported Values: One or more comma separated account IDs as returned in the attribute, Employee.Id, of the Employee entity response code."
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors.Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "account_type": {
+        "type": "String",
+        "required": false,
+        "default": "All account types",
+        "description": "Account type from which transactions are included in the report.Supported Values: AccountsPayable, AccountsReceivable, Bank, CostOfGoodsSold, CreditCard, Equity, Expense, FixedAsset, Income, LongTermLiability, NonPosting, OtherAsset, OtherCurrentAsset, OtherCurrentLiability, OtherExpense, OtherIncome"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: create_by, create_date, doc_num*, last_mod_by, last_mod_date, memo*, name*, pmt_mthd, split_acc*, tx_date*, txn_type* Additional columns with tax enabled: tax_code Additional columns with class tracking enabled: klass_name* Additional columns with location tracking enabled: dept_name* Multicurrency is enabled for the company if Preferences.MultiCurrencyEnabled is set to true. Read more about multicurrency support here. NonTracking status is enabled for the company if CompanyInfo.NameValue.Name.NonTracking is set to true. Currently enabled for Canadian company, other locales can be added in the future."
+      }
+    }
+  },
+  "agedpayabledetailquery": {
+    "required": [],
+    "optional": [
+      "shipvia",
+      "term",
+      "end_duedate",
+      "accounting_method",
+      "start_duedate",
+      "custom1",
+      "custom2",
+      "custom3",
+      "report_date",
+      "num_periods",
+      "vendor",
+      "past_due",
+      "aging_period",
+      "columns"
+    ],
+    "properties": {
+      "shipvia": {
+        "type": "String",
+        "required": false,
+        "default": "To include data for all shipping methods",
+        "description": "Filter by the shipping method as stored in Invoice.ShipMethodRef.Name.Supported Values: Any shipping method as sent in the Invoice.ShipMethodRef.Name attribute at Invoice create- or update-time."
+      },
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "to return data for all terms",
+        "description": "Filters report contents based on term or terms supplied.Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Preferences.ReportPrefs.ReportBasis",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "custom1": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all fields",
+        "description": "Filter by the specified custom field as defined by the CustomField attribute in transaction entities where supported.Supported Values: Name of custom field."
+      },
+      "custom2": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all fields",
+        "description": "Filter by the specified custom field as defined by the CustomField attribute in transaction entities where supported.Supported Values: Name of custom field."
+      },
+      "custom3": {
+        "type": "String",
+        "required": false,
+        "default": "to include data for all fields",
+        "description": "Filter by the specified custom field as defined by the CustomField attribute in transaction entities where supported.Supported Values: Name of custom field."
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "Today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "num_periods": {
+        "type": "Integer",
+        "required": false,
+        "default": "4",
+        "description": "The number of periods to be shown in the report.Supported Values: A numeric value."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "to return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors.Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "past_due": {
+        "type": "Integer",
+        "required": false,
+        "default": null,
+        "description": "Filters report contents based on minimum days past due.Supported Values: Integer number of days. no filtering"
+      },
+      "aging_period": {
+        "type": "Decimal",
+        "required": false,
+        "default": "30",
+        "description": "The number of days in the aging period.Supported Values: A numeric value."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: create_by, create_date, doc_num*, due_date*, last_mod_by, last_mod_date, memo*, past_due*, term_name, tx_date*, txn_type*, vend_bill_addr, vend_comp_name, vend_name*, vend_pri_cont, vend_pri_email, vend_pri_tel Additional columns with location tracking enabled: dept_name*"
+      }
+    }
+  },
+  "itemsalesquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "end_duedate",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "start_duedate",
+      "class",
+      "item",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "If not specified value of date_macro is used. The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range."
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file.Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all items",
+        "description": "Filters report contents to include information for specified items.Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results.Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "If not specified value of date_macro is used. The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range."
+      }
+    }
+  },
+  "customerincomequery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "term",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "class",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "vendor",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers. Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all terms",
+        "description": "Filters report contents based on term or terms supplied. Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file. Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors. Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "journalreportquery": {
+    "required": [],
+    "optional": [
+      "journal_code",
+      "end_date",
+      "date_macro",
+      "sort_by",
+      "sort_order",
+      "start_date",
+      "columns"
+    ],
+    "properties": {
+      "journal_code": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all journal codes",
+        "description": "Filters report contents to include information for specified journal codes. Supported Values: One or more comma separated journal codes. For example AN, BQ1, VT, and so on."
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report. Supported Values: acct_num_with_extn*, account_name*, credit_amt*, create_by, create_date, debt_amt*, doc_num*, due_date*, is_ar_paid*, is_ap_paid*, item_name, journal_code_name*, last_mod_by, last_mod_date, memo*, name, neg_open_bal, paid_date*, pmt_mthd, quantity, rate, tx_date*, txn_num*, txn_type*"
+      }
+    }
+  },
+  "fecreportquery": {
+    "required": [],
+    "optional": [
+      "attachmentType",
+      "withQboIdentifier",
+      "start_date",
+      "end_date",
+      "add_due_date"
+    ],
+    "properties": {
+      "attachmentType": {
+        "type": "String",
+        "required": false,
+        "default": "The Attachment type",
+        "description": "The parameter attachment type is a string value, and can accept one of the values : TEMPORARY_LINKS or NONE only."
+      },
+      "withQboIdentifier": {
+        "type": "Boolean",
+        "required": false,
+        "default": "withQboIdentifier",
+        "description": "The parameter withQboIdentifier is a boolean value, in the format true or false. This parameter can be used to add the columns transaction id and sequence in the response of the query"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "start_date",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "end_date",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "add_due_date": {
+        "type": "Boolean",
+        "required": false,
+        "default": "add_due_date",
+        "description": "The parameter add_due_date is a boolean value, in the format true. false"
+      }
+    }
+  },
+  "vendorbalancedetailquery": {
+    "required": [],
+    "optional": [
+      "term",
+      "end_duedate",
+      "accounting_method",
+      "date_macro",
+      "start_duedate",
+      "duedate_macro",
+      "sort_by",
+      "report_date",
+      "sort_order",
+      "appaid",
+      "department",
+      "vendor",
+      "columns"
+    ],
+    "properties": {
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all terms",
+        "description": "Filters report contents based on term or terms supplied. Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute.",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "To return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "duedate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range of due dates for balances to include in the report; otherwise, use the start_duedate and end_duedate to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "report_date": {
+        "type": "String",
+        "required": false,
+        "default": "Today's date",
+        "description": "Start date to use for the report, in the format YYYY-MM-DD."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "appaid": {
+        "type": "String",
+        "required": false,
+        "default": "Unpaid",
+        "description": "Status of the balance. Supported Values: Paid, Unpaid, All"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "vendor": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all vendors",
+        "description": "Filters report contents to include information for specified vendors. Supported Values: One or more comma separated vendor IDs as returned in the attribute, Vendor.Id, of the Vendor object response code."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report. Supported Values: create_by, create_date, doc_num*, due_date*, last_mod_by, last_mod_date, memo*, term_name, tx_date*, txn_type*, vend_bill_addr, vend_comp_name, vend_name*, vend_pri_cont, vend_pri_email, vend_pri_tel Additional columns with location tracking enabled: dept_name*"
+      }
+    }
+  },
+  "transactionlistbycustomerquery": {
+    "required": [],
+    "optional": [
+      "date_macro",
+      "payment_method",
+      "duedate_macro",
+      "arpaid",
+      "bothamount",
+      "transaction_type",
+      "docnum",
+      "start_moddate",
+      "source_account_type",
+      "group_by",
+      "start_date",
+      "department",
+      "start_duedate",
+      "columns",
+      "end_duedate",
+      "end_date",
+      "memo",
+      "appaid",
+      "moddate_macro",
+      "printed",
+      "createdate_macro",
+      "cleared",
+      "customer",
+      "qzurl",
+      "term",
+      "end_createdate",
+      "name",
+      "sort_by",
+      "sort_order",
+      "start_createdate",
+      "end_moddate"
+    ],
+    "properties": {
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year, This Calendar Quarter, This Calendar Quarter-to-date, Last Calendar Quarter, Last Calendar Quarter-to-date, Next Calendar Quarter, This Calendar Year, This Calendar Year-to-date, Last Calendar Year, Last Calendar Year-to-date, Next Calendar Year"
+      },
+      "payment_method": {
+        "type": "String",
+        "required": false,
+        "default": "Include all payment methods",
+        "description": "Filters report contents based on payment method.Supported Values: Cash, Check, Dinners Club, American Express, Discover, MasterCard, Visa, Credit Card"
+      },
+      "duedate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined date range of due dates for balances to include in the report; otherwise, use the start_duedate and end_duedate to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "arpaid": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Supported Values:All, Paid, Unpaid"
+      },
+      "bothamount": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all amounts",
+        "description": "Filters report contents to include information for specified transaction amount. For example, bothamount=1233.45 limits report contents to transactions of amount 1233.45."
+      },
+      "transaction_type": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all transactions",
+        "description": "Filters report contents based transaction type. Supported values include:CreditCardCharge, Check, Invoice, ReceivePayment, JournalEntry, Bill, CreditCardCredit, VendorCredit, Credit, BillPaymentCheck, BillPaymentCreditCard, Charge, Transfer, Deposit, Statement, BillableCharge, TimeActivity, CashPurchase, SalesReceipt, CreditMemo, CreditRefund, Estimate, InventoryQuantityAdjustment, PurchaseOrder, GlobalTaxPayment, GlobalTaxAdjustment, Service Tax Refund, Service Tax Gross Adjustment, Service Tax Reversal, Service Tax Defer, Service Tax Partial Utilisation"
+      },
+      "docnum": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all docnums.",
+        "description": "Filters report contents to include information for specified transaction number, as found in the docnum parameter of the transaction object."
+      },
+      "start_moddate": {
+        "type": "String",
+        "required": false,
+        "default": "moddate_macro",
+        "description": "(Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      },
+      "source_account_type": {
+        "type": "String",
+        "required": false,
+        "default": "All account types",
+        "description": "Account type from which transactions are included in the report.Supported Values: AccountsPayable, AccountsReceivable, Bank, CostOfGoodsSold, CreditCard, Equity, Expense, FixedAsset, Income, LongTermLiability, NonPosting, OtherAsset, OtherCurrentAsset, OtherCurrentLiability, OtherExpense, OtherIncome"
+      },
+      "group_by": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The field in the transaction by which to group results. Supported Values: Name, Account, Transaction Type, Customer, Vendor, Employee, Location, Payment Method, Day, Week, Month, Quarter, Year, Fiscal Year, Fiscal Quarter, None"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "Return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "columns": {
+        "type": "String",
+        "required": false,
+        "default": "columns denoted with *",
+        "description": "Column types to be shown in the report.Supported Values: account_name*, create_by, create_date, cust_msg, due_date, doc_num*, inv_date, is_ap_paid, is_cleared, is_no_post*, last_mod_by, memo*, name*, other_account*, pmt_mthd, printed, sales_cust1, sales_cust2, sales_cust3, term_name, tracking_num, tx_date*, txn_type*, term_name, last_mod_date, ship_via, olb_status, is_ar_paid, extra_doc_num, cust_name Additional columns when location tracking enabled: dept_name* Additional columns with location tracking enabled: dept_name* Multicurrency is enabled for the company if Preferences.MultiCurrencyEnabled is set to true. Read more about multicurrency support here."
+      },
+      "end_duedate": {
+        "type": "String",
+        "required": false,
+        "default": "Return all receivables due data",
+        "description": "The range of dates over which receivables are due, in the format YYYY-MM-DD. start_duedate must be less than end_duedate. If not specified, all data is returned."
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": "date_macro",
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "memo": {
+        "type": "String",
+        "required": false,
+        "default": "Include all memos",
+        "description": "Filters report contents to include information for specified memo.Supported Values: One or more comma separated memo IDs."
+      },
+      "appaid": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Status of the balance.Supported Values: Paid, Unpaid, All"
+      },
+      "moddate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined report account modification date range. Use if you want the report to cover a standard report date range when accounts were modified; otherwise, use the start_moddate and end_moddate to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "printed": {
+        "type": "String",
+        "required": false,
+        "default": "All",
+        "description": "Filters report contents based on whether checks are printed or not.Supported Values: Printed, To_be_printed"
+      },
+      "createdate_macro": {
+        "type": "String",
+        "required": false,
+        "default": "All dates",
+        "description": "Predefined report account create date range. Use if you want the report to cover a standard create report date range; otherwise, use start_createdate and end_createdate to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "cleared": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all check statuses",
+        "description": "Filters report contents to include information for specified check status.Supported Values: Cleared: The transaction has been processed by a bank or credit card account and is reflected in the bank balance.Uncleared: A financial entry that has not been reconciled or matched with the corresponding bank statement records.Reconciled: The transaction has been compared to original records and verified as correct.Deposited: A deposit was made into a bank account, such as a checking account."
+      },
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data.Supported Values: true, false"
+      },
+      "term": {
+        "type": "String",
+        "required": false,
+        "default": "Return data for all terms",
+        "description": "Filters report contents based on term or terms supplied.Supported Values: One or more comma separated term IDs as returned in the attribute, Term.Id of the Term object response code."
+      },
+      "end_createdate": {
+        "type": "String",
+        "required": false,
+        "default": "createdate_macro",
+        "description": "Specify an explicit account create report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use createdate_macro to cover a standard report date range. (This field is not currently available.)"
+      },
+      "name": {
+        "type": "String",
+        "required": false,
+        "default": "Include data from all customer, vendor, and employee objects",
+        "description": "Filters report contents based on the specified comma separated list of ids for the name list customer, vendor, or employee objects.Query the Customer, Vendor, or Employee name list resource to determine the list of objects for this reference. Specify values found in Customer.Id, Vendor.Id, and Employee.Id. For example, name=1,4,7 includes data in the report for namelist ids 1, 4, and 7. vendor and employee objects"
+      },
+      "sort_by": {
+        "type": "String",
+        "required": false,
+        "default": "txn_type",
+        "description": "The column type used in sorting report rows. Specify a column type as defined with the columns query parameter."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "start_createdate": {
+        "type": "String",
+        "required": false,
+        "default": "createdate_macro",
+        "description": "Specify an explicit account create report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use createdate_macro to cover a standard report date range. (This field is not currently available.)"
+      },
+      "end_moddate": {
+        "type": "String",
+        "required": false,
+        "default": "moddate_macro",
+        "description": "(Account List Detail) Specify an explicit account modification report date range, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use the moddate_macro to cover a standard report date range."
+      }
+    }
+  },
+  "classsalesquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "class",
+      "item",
+      "summarize_column_by",
+      "department",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers. Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file. Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all items",
+        "description": "Filters report contents to include information for specified items. Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results. Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file. Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "taxsummaryquery": {
+    "required": [
+      "agency_id"
+    ],
+    "optional": [
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "sort_order",
+      "start_date"
+    ],
+    "properties": {
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range. Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "agency_id": {
+        "type": "String",
+        "required": true,
+        "default": "Report_Date",
+        "description": "The ID of the Tax Agency for which to generate the report. Read the TaxAgency object to get all valid values for this field."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order. Supported Values: ascend, descend"
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  },
+  "customersalesquery": {
+    "required": [],
+    "optional": [
+      "customer",
+      "qzurl",
+      "accounting_method",
+      "end_date",
+      "date_macro",
+      "class",
+      "item",
+      "sort_order",
+      "summarize_column_by",
+      "department",
+      "start_date"
+    ],
+    "properties": {
+      "customer": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all customers",
+        "description": "Filters report contents to include information for specified customers.Supported Values: One or more comma separated customer IDs as returned in the attribute, Customer.Id, of the Customer object response code."
+      },
+      "qzurl": {
+        "type": "String",
+        "required": false,
+        "default": "false",
+        "description": "Specifies whether Quick Zoom URL information should be generated for rows in the report. Quick Zoom URL is a hyperlink to another report containing further details about the particular column of data.Supported Values: true, false"
+      },
+      "accounting_method": {
+        "type": "String",
+        "required": false,
+        "default": "Method defined in preferences by the Preferences.ReportPrefs.ReportBasis attribute",
+        "description": "The accounting method used in the report. Supported Values:Cash, Accrual"
+      },
+      "end_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The end date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      },
+      "date_macro": {
+        "type": "String",
+        "required": false,
+        "default": "This Fiscal Year-to-date",
+        "description": "Predefined date range. Use if you want the report to cover a standard report date range; otherwise, use the start_date and end_date to cover an explicit report date range.Supported Values: Today, Yesterday, This Week, Last Week, This Week-to-date, Last Week-to-date, Next Week, Next 4 Weeks, This Month, Last Month, This Month-to-date, Last Month-to-date, Next Month, This Fiscal Quarter, Last Fiscal Quarter, This Fiscal Quarter-to-date, Last Fiscal Quarter-to-date, Next Fiscal Quarter, This Fiscal Year, Last Fiscal Year, This Fiscal Year-to-date, Last Fiscal Year-to-date, Next Fiscal Year"
+      },
+      "class": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all classes",
+        "description": "Filters report contents to include information for specified classes if so configured in the company file.Supported Values: One or more comma separated class IDs as returned in the attribute, Class.Id, of the Class entity response code."
+      },
+      "item": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all items",
+        "description": "Filters report contents to include information for specified items.Supported Values: One or more comma separated item IDs as returned in the attribute, Item.Id,of the Item entity response code."
+      },
+      "sort_order": {
+        "type": "String",
+        "required": false,
+        "default": "ascend",
+        "description": "The sort order.Supported Values: ascend, descend"
+      },
+      "summarize_column_by": {
+        "type": "String",
+        "required": false,
+        "default": "Total*",
+        "description": "The criteria by which to group the report results.Supported Values: Total, Month, Week, Days, Quarter, Year, Customers, Vendors, Classes, Departments, Employees, ProductsAndServices"
+      },
+      "department": {
+        "type": "String",
+        "required": false,
+        "default": "Include data for all departments",
+        "description": "Filters report contents to include information for specified departments if so configured in the company file.Supported Values: One or more comma separated department IDs as returned in the attribute, Department.Id of the Department object response code."
+      },
+      "start_date": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "description": "The start date of the report, in the format YYYY-MM-DD. start_date must be less than end_date. Use if you want the report to cover an explicit date range; otherwise, use date_macro to cover a standard report date range. If not specified value of date_macro is used"
+      }
+    }
+  }
+}
