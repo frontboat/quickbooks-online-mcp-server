@@ -18,7 +18,7 @@ const PROMOTED_ACTION_IDS = new Set<string>([
 
 /**
  * Complete catalog of available QuickBooks actions.
- * Includes CRUD operations for 10 entity types plus 29 financial reports.
+ * Includes CRUD operations for 12 entity types plus 29 financial reports.
  */
 export const ACTION_CATALOG: ActionEntry[] = [
   // ── Customer ──────────────────────────────────────────────
@@ -443,6 +443,51 @@ export const ACTION_CATALOG: ActionEntry[] = [
     operation: "search",
     description:
       "Search bill payments. Filterable: Id, VendorRef, TotalAmt, PayType, TxnDate, MetaData.CreateTime, MetaData.LastUpdatedTime.",
+    parameterHints: {
+      criteria: "Array of { field, value, operator? } or simple { key: value }",
+    },
+  },
+
+  // ── Payment (Customer / AR) ───────────────────────────────
+  {
+    id: "create_payment",
+    entity: "payment",
+    operation: "create",
+    description:
+      "Record money received from a customer and apply it to one or more invoices. Requires CustomerRef, TotalAmt, and Line items with LinkedTxn referencing invoice IDs. Closes the AR loop for invoices created via create_invoice.",
+    parameterHints: {
+      data: "Payment object. Required: { CustomerRef: { value: customerId }, TotalAmt, Line: [{ Amount, LinkedTxn: [{ TxnId: invoiceId, TxnType: 'Invoice' }] }] }. Omit Line to record an unapplied credit on the customer.",
+    },
+  },
+  {
+    id: "get_payment",
+    entity: "payment",
+    operation: "get",
+    description: "Fetch a single customer payment by its QuickBooks ID.",
+    parameterHints: { id: "The QuickBooks Payment ID (string)" },
+  },
+  {
+    id: "update_payment",
+    entity: "payment",
+    operation: "update",
+    description: "Update an existing customer payment. Requires Id and SyncToken.",
+    parameterHints: {
+      data: "Payment object. Required: { Id, SyncToken }. Include only changed fields.",
+    },
+  },
+  {
+    id: "delete_payment",
+    entity: "payment",
+    operation: "delete",
+    description: "Permanently delete a customer payment. Hard delete — cannot be undone.",
+    parameterHints: { id: "The QuickBooks Payment ID to delete" },
+  },
+  {
+    id: "search_payments",
+    entity: "payment",
+    operation: "search",
+    description:
+      "Search customer payments. Filterable: Id, CustomerRef, TotalAmt, TxnDate, MetaData.CreateTime, MetaData.LastUpdatedTime.",
     parameterHints: {
       criteria: "Array of { field, value, operator? } or simple { key: value }",
     },

@@ -113,6 +113,17 @@ export const ENTITIES: Record<string, EntityConfig> = {
       find: "findBillPayments",
     },
   },
+  payment: {
+    label: "Payment",
+    queryResponseKey: "Payment",
+    methods: {
+      create: "createPayment",
+      get: "getPayment",
+      update: "updatePayment",
+      delete: "deletePayment",
+      find: "findPayments",
+    },
+  },
   purchase: {
     label: "Purchase",
     queryResponseKey: "Purchase",

@@ -21,7 +21,7 @@ const inputSchema = {
       "The action ID from search_actions results (e.g. 'create_customer', 'search_invoices').",
     ),
   params: jsonOrNative(z.record(z.string(), z.any())).describe(
-    "Parameters for the action. Shape depends on the operation type — check parameterHints from search_actions. For hard-delete operations (estimate, bill, journal_entry, bill_payment, purchase), you can include `confirm: true` to bypass interactive confirmation on hosts without elicitation support.",
+    "Parameters for the action. Shape depends on the operation type — check parameterHints from search_actions. For hard-delete operations (estimate, bill, journal_entry, bill_payment, payment, purchase), you can include `confirm: true` to bypass interactive confirmation on hosts without elicitation support.",
   ),
 };
 

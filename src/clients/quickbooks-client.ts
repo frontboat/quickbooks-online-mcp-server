@@ -1,5 +1,14 @@
 import dotenv from "dotenv";
-import { QuickBooks } from "node-quickbooks";
+import QuickBooksRuntime from "node-quickbooks";
+import type { QuickBooks as QuickBooksT } from "node-quickbooks";
+
+// `node-quickbooks` is a CommonJS module whose entire export is the class
+// (`module.exports = QuickBooks`). Under NodeNext, `import X from` a CJS
+// module is typed as the module namespace, even though Node delivers the
+// class value at runtime. Cast the runtime binding and re-expose the
+// instance type so both `new QuickBooks(...)` and `: QuickBooks` work.
+const QuickBooks = QuickBooksRuntime as unknown as typeof QuickBooksT;
+type QuickBooks = QuickBooksT;
 import OAuthClient from "intuit-oauth";
 import http from 'http';
 import open from 'open';

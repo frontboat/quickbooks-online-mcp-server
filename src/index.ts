@@ -3,7 +3,7 @@
 /**
  * Entry point for the QuickBooks Online MCP Server.
  * Initializes the server with all available tools:
- * - Catalog tools: search_actions and execute_action for discovering and running any of 50 operations
+ * - Catalog tools: search_actions and execute_action for discovering and running any of 55 operations
  * - Promoted tools: search_customers, create_customer, create_invoice, search_invoices, search_accounts
  * - Write tools (create_customer, create_invoice) are only registered when not in read-only mode
  * Connects to Claude via stdio transport for use as an MCP server.
@@ -31,7 +31,7 @@ import { registerRunReport } from "./tools/run-report.tool.js";
 const main = async () => {
   const server = QuickbooksMCPServer.GetServer();
 
-  // Catalog tools — discover and execute any of 50 operations
+  // Catalog tools — discover and execute any of 55 operations
   registerSearchActions(server);
   registerExecuteAction(server);
 

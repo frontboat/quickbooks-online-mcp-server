@@ -37,7 +37,7 @@ export function registerSearchActions(server: McpServer) {
           content: [
             {
               type: "text" as const,
-              text: `No actions found for "${intent}". Try broader terms. Available entities: customer, invoice, estimate, bill, account, item, vendor, employee, journal_entry, bill_payment, purchase. Operations: create, get, update, delete, search.`,
+              text: `No actions found for "${intent}". Try broader terms. Available entities: customer, invoice, estimate, bill, account, item, vendor, employee, journal_entry, bill_payment, payment, purchase. Operations: create, get, update, delete, search.`,
             },
           ],
         };

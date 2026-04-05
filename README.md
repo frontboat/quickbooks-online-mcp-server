@@ -5,10 +5,10 @@ A [Model Context Protocol](https://modelcontextprotocol.io) server that gives Cl
 ## What you get
 
 - **Promoted tools** for common workflows: `search_customers`, `search_invoices`, `search_accounts`, `create_customer`, `create_invoice`
-- **`search_actions` + `execute_action`** for the long tail — 50 operations across 11 entity types (Customer, Invoice, Estimate, Bill, Account, Item, Vendor, Employee, JournalEntry, BillPayment, Purchase)
+- **`search_actions` + `execute_action`** for the long tail — 55 operations across 12 entity types (Customer, Invoice, Estimate, Bill, Account, Item, Vendor, Employee, JournalEntry, BillPayment, Payment, Purchase)
 - **`describe_report` + `run_report`** — a report query engine covering all 29 QuickBooks reports (P&L, Balance Sheet, Cash Flow, Aged Receivables, etc.) with `summary`/`flat`/`full` view modes so you can size responses to the question
 - **Read-only mode** — set `QUICKBOOKS_READ_ONLY=true` in `.env` to safely connect the server to a production company file. All `create_*`, `update_*`, and `delete_*` operations are blocked; only searches, gets, and reports run.
-- **Hard-delete confirmation** — permanent deletes (estimates, bills, journal entries, bill payments, purchases) require interactive confirmation before proceeding. On elicitation-capable hosts like Claude Code, you'll see a native confirmation dialog showing the entity summary. On older hosts, the server refuses the delete unless `confirm: true` is passed explicitly in `params`.
+- **Hard-delete confirmation** — permanent deletes (estimates, bills, journal entries, bill payments, customer payments, purchases) require interactive confirmation before proceeding. On elicitation-capable hosts like Claude Code, you'll see a native confirmation dialog showing the entity summary. On older hosts, the server refuses the delete unless `confirm: true` is passed explicitly in `params`.
 - **Token storage outside `.env`** — OAuth refresh tokens live in `~/.quickbooks-mcp/tokens.json` (chmod 600), not in your project directory
 
 ## Requirements
