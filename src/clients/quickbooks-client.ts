@@ -1,19 +1,23 @@
 import dotenv from "dotenv";
-import QuickBooks from "node-quickbooks";
+import QuickBooksRuntime from "node-quickbooks";
+import type { QuickBooks as QuickBooksT } from "node-quickbooks";
+
+// `node-quickbooks` is a CommonJS module whose entire export is the class
+// (`module.exports = QuickBooks`). Under NodeNext, `import X from` a CJS
+// module is typed as the module namespace, even though Node delivers the
+// class value at runtime. Cast the runtime binding and re-expose the
+// instance type so both `new QuickBooks(...)` and `: QuickBooks` work.
+const QuickBooks = QuickBooksRuntime as unknown as typeof QuickBooksT;
+type QuickBooks = QuickBooksT;
 import OAuthClient from "intuit-oauth";
 import http from 'http';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import open from 'open';
+import { loadTokens, saveTokens, getTokenFilePath } from "../helpers/token-store.js";
 
 dotenv.config();
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const client_id = process.env.QUICKBOOKS_CLIENT_ID;
 const client_secret = process.env.QUICKBOOKS_CLIENT_SECRET;
-const refresh_token = process.env.QUICKBOOKS_REFRESH_TOKEN;
-const realm_id = process.env.QUICKBOOKS_REALM_ID;
 const environment = process.env.QUICKBOOKS_ENVIRONMENT || 'sandbox';
 const redirect_uri = 'http://localhost:8000/callback';
 
@@ -22,6 +26,40 @@ if (!client_id || !client_secret || !redirect_uri) {
   throw Error("Client ID, Client Secret and Redirect URI must be set in environment variables");
 }
 
+/**
+ * Loads persisted OAuth tokens, falling back to environment variables for
+ * backward compatibility with setups created before token state moved out
+ * of `.env`. When env fallback is used, the tokens are immediately written
+ * to the new state file and a one-line notice is emitted to stderr.
+ */
+function loadInitialTokens(): { refreshToken?: string; realmId?: string } {
+  const stored = loadTokens();
+  if (stored) {
+    return { refreshToken: stored.refresh_token, realmId: stored.realm_id };
+  }
+  const envRefresh = process.env.QUICKBOOKS_REFRESH_TOKEN;
+  const envRealm = process.env.QUICKBOOKS_REALM_ID;
+  if (envRefresh && envRealm) {
+    saveTokens({
+      refresh_token: envRefresh,
+      realm_id: envRealm,
+      environment,
+    });
+    console.error(
+      `[qbo-mcp] Migrated OAuth tokens from .env to ${getTokenFilePath()}. ` +
+        `You may safely remove QUICKBOOKS_REFRESH_TOKEN and QUICKBOOKS_REALM_ID from your .env file.`,
+    );
+    return { refreshToken: envRefresh, realmId: envRealm };
+  }
+  return {};
+}
+
+const initialTokens = loadInitialTokens();
+
+/**
+ * OAuth 2.0 client for the QuickBooks Online API.
+ * Handles token refresh, browser-based auth flow, and QuickBooks SDK instantiation.
+ */
 class QuickbooksClient {
   private readonly clientId: string;
   private readonly clientSecret: string;
@@ -72,11 +110,11 @@ class QuickbooksClient {
           try {
             const response = await this.oauthClient.createToken(req.url);
             const tokens = response.token;
-            
+
             // Save tokens
             this.refreshToken = tokens.refresh_token;
             this.realmId = tokens.realmId;
-            this.saveTokensToEnv();
+            this.persistTokens();
             
             // Send success response
             res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -152,24 +190,17 @@ class QuickbooksClient {
     });
   }
 
-  private saveTokensToEnv(): void {
-    const tokenPath = path.join(__dirname, '..', '..', '.env');
-    const envContent = fs.readFileSync(tokenPath, 'utf-8');
-    const envLines = envContent.split('\n');
-    
-    const updateEnvVar = (name: string, value: string) => {
-      const index = envLines.findIndex(line => line.startsWith(`${name}=`));
-      if (index !== -1) {
-        envLines[index] = `${name}=${value}`;
-      } else {
-        envLines.push(`${name}=${value}`);
-      }
-    };
-
-    if (this.refreshToken) updateEnvVar('QUICKBOOKS_REFRESH_TOKEN', this.refreshToken);
-    if (this.realmId) updateEnvVar('QUICKBOOKS_REALM_ID', this.realmId);
-
-    fs.writeFileSync(tokenPath, envLines.join('\n'));
+  private persistTokens(): void {
+    if (!this.refreshToken || !this.realmId) {
+      throw new Error(
+        "Cannot persist tokens before refresh_token and realm_id are set.",
+      );
+    }
+    saveTokens({
+      refresh_token: this.refreshToken,
+      realm_id: this.realmId,
+      environment: this.environment,
+    });
   }
 
   async refreshAccessToken() {
@@ -243,11 +274,16 @@ class QuickbooksClient {
   }
 }
 
+/**
+ * Singleton QuickBooks client instance. Static app credentials are read from
+ * environment variables; OAuth tokens come from the token store (with env
+ * fallback for backward compatibility — see {@link loadInitialTokens}).
+ */
 export const quickbooksClient = new QuickbooksClient({
   clientId: client_id,
   clientSecret: client_secret,
-  refreshToken: refresh_token,
-  realmId: realm_id,
+  refreshToken: initialTokens.refreshToken,
+  realmId: initialTokens.realmId,
   environment: environment,
   redirectUri: redirect_uri,
 });

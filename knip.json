@@ -1,0 +1,8 @@
+{
+  "entry": [
+    "src/auth-server.ts"
+  ],
+  "project": [
+    "src/**/*.ts"
+  ]
+}
