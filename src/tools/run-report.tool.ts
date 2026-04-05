@@ -11,10 +11,10 @@ const inputSchema = {
       "The report ID (e.g. 'profit_and_loss', 'balance_sheet', 'aged_receivables'). Call describe_report to discover valid IDs.",
     ),
   params: z
-    .record(z.string(), z.any())
+    .looseObject({})
     .optional()
     .describe(
-      "Query parameters for the report. Common params: date_macro (e.g. 'Last Month', 'This Fiscal Year-to-date'), start_date/end_date ('YYYY-MM-DD'), accounting_method ('Cash'|'Accrual'), summarize_column_by ('Month'|'Quarter'|'Year'|'Total'). Call describe_report(report_id) to see every supported parameter for a specific report.",
+      "Query parameters for the report as a JSON object. Common params: date_macro (e.g. 'Last Month', 'This Fiscal Year-to-date'), start_date/end_date ('YYYY-MM-DD'), accounting_method ('Cash'|'Accrual'), summarize_column_by ('Month'|'Quarter'|'Year'|'Total'). Call describe_report(report_id) to see every supported parameter for a specific report.",
     ),
   view: z
     .enum(["summary", "flat", "full"])
